@@ -1,0 +1,18 @@
+@startuml Dynamics Data Acquisition System
+!include <archimate/Archimate>
+
+Business_Actor(tester, "Tester")
+Business_Role(operator, "Operator")
+
+Business_Event(startManouvre, "Start\nManouvre")
+Business_Service(recordManouvre, "Record\nManouvre")
+Business_Event(stopManouvre, "Stop\nManouvre")
+
+Rel_Assignment(operator, startManouvre, "")
+Rel_Assignment(operator, stopManouvre, "")
+Rel_Triggering(startManouvre, recordManouvre, "Begin")
+Rel_Triggering(stopManouvre, recordManouvre, "End")
+
+Business_Object(dataset, "Manouvre\nDataset")
+
+Rel_Serving(recordManouvre, dataset)

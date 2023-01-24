@@ -1,0 +1,91 @@
+@startuml tame-derby
+!include <archimate/Archimate>
+
+' Motivation
+Motivation_Goal(betterDataFaster, "'Deliver Better Data Faster'")
+Motivation_Outcome(reduceInstroBuildTimeBy20PC, "Reduce instrumentation\nKit, Fit & Terminate time by 20%")
+Motivation_Outcome(passOffProdEnginesFaster, "Reduce production\nengine pass-off test\ntime by 25%")
+Motivation_Outcome(accessTestDataEasily, "Quicker access to\nrelevent test data")
+Motivation_Outcome(certifyEngineOnTime, "Certify Engine\nProject on time")
+Motivation_Outcome(detectTurbineOverspeed, "Detect engine overspeeds\nduring engine tests")
+
+Rel_Influence_Up(accessTestDataEasily, betterDataFaster)
+Rel_Influence_Up(reduceInstroBuildTimeBy20PC, betterDataFaster)
+Rel_Influence_Up(passOffProdEnginesFaster, betterDataFaster)
+Rel_Influence_Up(certifyEngineOnTime, betterDataFaster)
+Rel_Influence_Up(detectTurbineOverspeed, betterDataFaster)
+
+' Course of action
+Strategy_CourseOfAction(developTubineOverspeedDetectionSystem, "Develop\nTurbine Overspeed\nDetection System")
+Strategy_CourseOfAction(developInstroExecutionBusinessSystem, "Develop\nInstrumentation\nBusiness System")
+' Strategy_CourseOfAction(developSmartRakes, "Develop Smart\nTemperature Rakes")
+Strategy_CourseOfAction(developAutoProdPassOffSystem, "Develop Auto\nPass-Off System")
+Strategy_CourseOfAction(developTestDataMetaModel, "Develop test data meta model")
+Strategy_CourseOfAction(developEngineMonitoringSystem, "Develop Engine\nMonitoring System")
+
+Rel_Influence_Up(developTubineOverspeedDetectionSystem, detectTurbineOverspeed)
+Rel_Influence_Up(developInstroExecutionBusinessSystem, reduceInstroBuildTimeBy20PC)
+' Rel_Influence_Up(developSmartRakes, reduceInstroBuildTimeBy20PC)
+Rel_Influence_Up(developAutoProdPassOffSystem, passOffProdEnginesFaster)
+Rel_Influence_Up(developTestDataMetaModel, accessTestDataEasily)
+Rel_Influence_Up(developEngineMonitoringSystem, certifyEngineOnTime)
+
+' Capabilities
+Strategy_Capability(softwareDevelopment, "Software Development")
+Strategy_Capability(electronicsDesign, "Electronics Design")
+Strategy_Capability(dataModelling, "Data Modelling")
+
+Rel_Realization_Up(softwareDevelopment, developTubineOverspeedDetectionSystem)
+Rel_Realization_Up(electronicsDesign, developTubineOverspeedDetectionSystem)
+Rel_Realization_Up(softwareDevelopment, developInstroExecutionBusinessSystem)
+' Rel_Realization_Up(electronicsDesign, developSmartRakes)
+Rel_Realization_Up(softwareDevelopment, developAutoProdPassOffSystem)
+Rel_Realization_Up(dataModelling, developTestDataMetaModel)
+Rel_Realization_Up(softwareDevelopment, developEngineMonitoringSystem)
+Rel_Realization_Up(electronicsDesign, developEngineMonitoringSystem)
+
+' Resources
+Strategy_Resource(SR_IT, "IT Resources")
+Strategy_Resource(SR_Engineering, "Engineering Resources")
+
+' Location
+Other_Location(OL_Derby, "Derby Campus")
+Other_Location(OL_DF84, "Building\nDF84")
+Other_Location(OL_DF33, "Building\nDF33")
+Other_Location(OL_C2Warehouse, "C2 Warehouse")
+
+Rel_Assignment_Up(SR_IT, softwareDevelopment)
+Rel_Assignment_Up(SR_IT, electronicsDesign)
+Rel_Assignment_Up(SR_IT, dataModelling)
+Rel_Assignment_Up(SR_Engineering, softwareDevelopment)
+Rel_Assignment_Up(SR_Engineering, electronicsDesign)
+Rel_Assignment_Up(SR_Engineering, dataModelling)
+Rel_Aggregation(SR_IT, OL_Derby)
+Rel_Aggregation(SR_Engineering, OL_Derby)
+
+' Grouping
+Grouping(G_TAME_DERBY, "TAME-DERBY") {
+    Technology_CommunicationNetwork(TCN_TAME_DERBY, "Local Area Network\n10.190.33.0/24")
+    Technology_Service(TS_AD_DS, "Active Directory\nDomain Services")
+    Technology_Interface(TI_DHCP, "DHCP Interface")
+    Technology_Service(TS_DHCP, "DHCP Service")
+    Technology_Function(TF_DC, "Windows Domain Controller")
+    Technology_Device(TD_TAME_PC, "Client PC")
+
+}
+
+Rel_Realization_Up(G_TAME_DERBY, SR_IT)
+Rel_Aggregation_Up(OL_DF84, G_TAME_DERBY)
+Rel_Aggregation_Up(OL_DF33, G_TAME_DERBY)
+Rel_Composition(TS_DHCP, TI_DHCP)
+Rel_Serving(TI_DHCP, TD_TAME_PC)
+Rel_Association(TD_TAME_PC, TCN_TAME_DERBY)
+
+Grouping(G_RRLOCAL, "RRLOCAL") {
+    ' Technology_CommunicationNetwork()
+    Technology_Device(TD_GAD_PC, "Client PC")
+}
+
+Rel_Realization_Left(G_RRLOCAL, SR_IT)
+
+@enduml

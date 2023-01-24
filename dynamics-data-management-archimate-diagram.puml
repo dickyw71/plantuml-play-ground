@@ -1,0 +1,46 @@
+@startuml Dynamics Data Management
+!include <archimate/Archimate>
+
+' Business Process
+Business_Process(dataManagement, "Data\nManagement")
+Business_Process(import, "Import")
+Business_Process(export, "Export")
+Business_Process(remove, "Remove")
+
+
+' Application Services
+Application_Service(importService, "Import\nService")
+
+Application_Service(exportForFdmIngestionService, "Export for\nFDM Azure\nIngestion\nService")
+Application_Service(uploadToAzureService, "Upload to\nFDM Azure\nService")
+Application_Service(fdmAzureIngestionService, "Call\nFDM Azure\nIngestion\nService")
+Application_Service(deleteService, "Delete\nService")
+
+' Applications Components
+Application_Component(dynamicsTlsImporter, "dynamics_tls_importer")
+
+Application_Component(dynamicsFdmExporter, "dynamics_fdm_exporter")
+Application_Component(dynamicsDelete, "dynamics_delete")
+
+' Application Functions
+Application_Function(importFunction, "Import\nFunction")
+
+Application_Function(fdmOutputFunction, "FDM\nOutput\nFunction")
+Application_Function(deleteFunction, "Delete\nFunction")
+
+
+' Relations
+Rel_Realization_Up(importFunction, importService)
+Rel_Realization(deleteDynamicsFunction, deleteService)
+Rel_Aggregation(dataManagement, import)
+Rel_Aggregation(dataManagement, export)
+Rel_Aggregation(dataManagement, remove)
+Rel_Serving_Up(importService, import)
+Rel_Composition_Right(dynamicsTlsImporter, importFunction)
+
+Rel_Aggregation(deleteFunction, dynamicsDelete)
+' Technology_
+Technology_Service(dataMovementService, "FileCatalyst\nHotFolder\nService")
+
+
+@enduml
