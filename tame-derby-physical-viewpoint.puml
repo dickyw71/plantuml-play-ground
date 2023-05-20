@@ -1,0 +1,61 @@
+@startuml tame-derby physical viewpoint
+!include <archimate/Archimate>
+
+Other_Location(OL_Derby_Campus, "Derby\nCampus")
+
+' Buildings
+Physical_Facility(PF_DF84, "Building\nDF84")
+Physical_Facility(PF_DF33, "Building\nDF33")
+Physical_Facility(PF_C2WH, "C2\nWarehouse")
+Physical_Facility(PF_ROV, "IT\nData Centre\nROV")
+Physical_Facility(PF_NDSR, "IT\nData Centre\nNDSR")
+Physical_Facility(PF_TSC, "Test\nSupport\nCentre")
+
+Rel_Composition_Down(OL_Derby_Campus, PF_DF84)
+Rel_Composition_Down(OL_Derby_Campus, PF_DF33)
+Rel_Composition_Down(OL_Derby_Campus, PF_C2WH)
+Rel_Composition_Down(OL_Derby_Campus, PF_ROV)
+Rel_Composition_Down(OL_Derby_Campus, PF_NDSR)
+Rel_Composition_Down(OL_Derby_Campus, PF_TSC)
+
+' DF84 Rooms
+Physical_Facility(PF_DF84_CR, "Computer\nRoom")
+Physical_Facility(PF_DF84_GFO, "Ground Floor\nOffice")
+Physical_Facility(PF_DF84_FFO, "1st Floor\nOffice")
+
+' DF33 Rooms
+Physical_Facility(PF_DF33_GFO, "Gnd Flr\nImage\nResource\nStudios")
+Physical_Facility(PF_DF33_FFO, "1st Floor\nOffice")
+Physical_Facility(PF_DF33_FFRL, "1st Floor\nRear Landing")
+Physical_Facility(PF_DF33_CAB, "IT Comms\nCabinet")
+
+
+' C2 Warehouse Room
+Physical_Facility(PF_ELAB, "Electronics\nLab")
+Physical_Facility(PF_CAB_SNA62, "Cabinet\nSNA62")
+' C2 Warehouse Tech
+Technology_Node(TN_C2WH_ALS, "Access Layer\n48-port Switch\n(GBDERA33X)")
+
+' TSC Room
+Physical_Facility(PF_TSC_WKS, "Workshop")
+' TSC Tech
+Technology_Node(TN_TSC_ALS, "Access Layer\nSwitch\n2x48-ports\n(GBDERA333)")
+
+Rel_Composition_Down(PF_DF84, PF_DF84_CR)
+Rel_Composition_Down(PF_DF84, PF_DF84_GFO)
+Rel_Composition_Down(PF_DF84, PF_DF84_FFO)
+
+Rel_Composition_Down(PF_DF33, PF_DF33_FFO)
+Rel_Composition_Down(PF_DF33, PF_DF33_GFO)
+Rel_Composition_Down(PF_DF33, PF_DF33_FFRL)
+
+Rel_Composition_Down(PF_C2WH, PF_ELAB)
+Rel_Assignment_Up(PF_CAB_SNA62, PF_C2WH)
+Rel_Assignment_Up(TN_C2WH_ALS, PF_CAB_SNA62)
+
+Rel_Association_Right(PF_CAB_SNA62, PF_ELAB, "Structured\nCabling")
+
+Rel_Composition_Down(PF_TSC, PF_TSC_WKS)
+Rel_Assignment_Up(TN_TSC_ALS, PF_TSC_WKS)
+
+@enduml

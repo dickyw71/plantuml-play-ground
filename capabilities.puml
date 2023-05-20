@@ -1,0 +1,29 @@
+@startuml capabilities and roles
+!include <archimate/Archimate>
+title Capabilities and Roles
+
+Strategy_Capability(dataStorageManagment, "Data Storage Management")
+Strategy_Capability(networkManagement, "Network Management")
+Strategy_Capability(backupRecoveryManagement, "Backup and Recovery Management")
+Strategy_Capability(incidentManagement, "Incident Managment")
+Strategy_Capability(cyberSecurityManagment, "Cybersecurity Management")
+Strategy_Capability(virtualInfrastructureManagement, "Virtual Infrastructure Management")
+Strategy_Capability(changeManagment, "Change Management")
+Strategy_Capability(lifecycleManagement, "Lifecycle Management")
+Strategy_Capability(datacentreManagement, "Datacentre Management")
+
+
+Business_Object(dataRetentionPolicy, "<<policy>>\nData Retention\nPolicy")
+Business_Object(backupPolicy, "<<policy>>\nBackup Policy")
+
+Business_Role(backupAdministrator, "Backup Administrator")
+Business_Role(storageAdministrator, "Storage Administrator")
+Business_Role(networkAdmistrator, "Network Administrator")
+Business_Role(virtualInfrastructureAdministrator, "Virtual Infrastructure Administrator")
+
+Rel_Assignment_Up(backupAdministrator, backupRecoveryManagement)
+Rel_Assignment_Up(storageAdministrator, dataStorageManagment)
+Rel_Assignment_Up(networkAdmistrator, networkManagement)
+Rel_Assignment_Up(virtualInfrastructureAdministrator, virtualInfrastructureManagement)
+
+@enduml

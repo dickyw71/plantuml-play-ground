@@ -49,7 +49,7 @@ Strategy_Resource(SR_IT, "IT Resources")
 Strategy_Resource(SR_Engineering, "Engineering Resources")
 
 ' Location
-Other_Location(OL_Derby, "Derby Campus")
+' Other_Location(OL_Derby, "Derby Campus")
 Other_Location(OL_DF84, "Building\nDF84")
 Other_Location(OL_DF33, "Building\nDF33")
 Other_Location(OL_C2Warehouse, "C2 Warehouse")
@@ -60,8 +60,8 @@ Rel_Assignment_Up(SR_IT, dataModelling)
 Rel_Assignment_Up(SR_Engineering, softwareDevelopment)
 Rel_Assignment_Up(SR_Engineering, electronicsDesign)
 Rel_Assignment_Up(SR_Engineering, dataModelling)
-Rel_Aggregation(SR_IT, OL_Derby)
-Rel_Aggregation(SR_Engineering, OL_Derby)
+' Rel_Aggregation(SR_IT, OL_Derby)
+' Rel_Aggregation(SR_Engineering, OL_Derby)
 
 ' Grouping
 Grouping(G_TAME_DERBY, "TAME-DERBY") {
@@ -80,12 +80,5 @@ Rel_Aggregation_Up(OL_DF33, G_TAME_DERBY)
 Rel_Composition(TS_DHCP, TI_DHCP)
 Rel_Serving(TI_DHCP, TD_TAME_PC)
 Rel_Association(TD_TAME_PC, TCN_TAME_DERBY)
-
-Grouping(G_RRLOCAL, "RRLOCAL") {
-    ' Technology_CommunicationNetwork()
-    Technology_Device(TD_GAD_PC, "Client PC")
-}
-
-Rel_Realization_Left(G_RRLOCAL, SR_IT)
 
 @enduml

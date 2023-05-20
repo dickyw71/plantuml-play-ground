@@ -5,10 +5,14 @@
 Business_Location(derbyCampus, "Derby\nCampus")
 
 ' Physical
-Physical_Facility(testBed80, "Test Bed 80")
-Physical_Facility(controlRoom, "Control\nRoom")
-Physical_Facility(equipmentRoom, "Equipment\nRoom")
+node "Testbed 80" <<$archimate/physical-facility>> as testBed80 #PHYSICAL {
+'    Physical_Facility(testBed80, "Test Bed 80") 
+    Physical_Facility(controlRoom, "Control\nRoom")
+    Physical_Facility(equipmentRoom, "Equipment\nRoom")
+    Physical_Facility(testCell, "Test\nCell")
+}
 
 Rel_Aggregation(derbyCampus, testBed80)
-Rel_Aggregation(testBed80, controlRoom)
-Rel_Aggregation(testBed80, equipmentRoom)
+'Rel_Aggregation(testBed80, controlRoom)
+'Rel_Aggregation(testBed80, equipmentRoom)
+'Rel_Aggregation(testBed80, testCell)
