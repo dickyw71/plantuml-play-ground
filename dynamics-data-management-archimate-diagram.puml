@@ -1,29 +1,38 @@
 @startuml Dynamics Data Management
 !include <archimate/Archimate>
+skinparam rectangle<<behavior>> {
+    roundCorner 25
+}
 
 ' Motivational Stakeholder
 Motivation_Stakeholder(vibrationEngineer, "Vibration\nEngineer")
 
-' Business Service
-Business_Service(rawDynamicDataProcessing, "Raw Dynamic Data Processing")
+' Application Service
+Application_Service(rawDynamicDataProcessing, "Dynamic Dataset Processing")
 
-' Business Function
-Business_Function(dataManagement, "Data\nManagement")
+
+
+' Application Function
+rectangle "Dynamics Data Management" <<$archimate/application-function>><<behavior>> as dataManagement #APPLICATION {
+    ' Application Process
+    Application_Process(import, "Catalogue datasets")
+    Application_Process(export, "Backup datasets in\nFDM Azure Data Store")
+    Application_Process(remove, "Remove datasets from TLS storage")
+}
 
 ' Business Process
-Business_Process(import, "Import")
 Business_Process(analyse, "Analyse")
-Business_Process(export, "Export")
-Business_Process(remove, "Remove")
-
 
 ' Application Services
-Application_Service(importService, "Import\nService")
+Application_Service(importService, "Dataset Metadata\nImporting")
+Application_Service(exportForFdmIngestionService, "Dataset Exporting")
+Application_Service(uploadToAzureService, "Azure Uploading")
+Application_Service(fdmAzureIngestionService, "FDM Ingestion\nTriggering")
+Application_Service(deleteService, "Deleting\ndatasets")
 
-Application_Service(exportForFdmIngestionService, "Exporting for\nFDM Azure\nIngestion")
-Application_Service(uploadToAzureService, "Uploading to\nFDM Azure")
-Application_Service(fdmAzureIngestionService, "Calling\nFDM Azure\nIngestion\nService")
-Application_Service(deleteService, "Delete\nService")
+Application_Service(datasetIndexIngestTriggering, "Index File Ingest\nTriggering")
+Application_Service(datasetFileIngestTriggering, "Data File Ingest\nTriggering")
+
 
 ' Applications Components
 Application_Component(dynamicsTlsImporter, "dynamics_tls_importer")
@@ -33,30 +42,58 @@ Application_Component(postUrlIngest, "post_url_ingest")
 Application_Component(fdmIngestPending, "fdm_ingest_pending")
 
 ' Application Functions
-Application_Function(importFunction, "Import\nFunction")
+Application_Function(importFunction, "Load into\n'dynamics' DB")
+Application_Function(ingestAfterUpload, "Ingest Uploaded")
+Application_Function(ingestFdmPending, "Ingest Pending")
 Application_Function(fdmOutputFunction, "FDM\nOutput\nFunction")
 Application_Function(deleteFunction, "Delete\nFunction")
 
-' Technology_
+' Technology Function
+Technology_Function(receive, "Receive dataset from DDAS")
+
+' Technology Device
+Technology_Device(internalBulkDataStorage, "Internal Bulk Data Storage")
+
+' Technology Services
 Technology_Service(dataMovementService, "FileCatalyst\nHotFolder\nService")
 
-' Relations
+' Technology Artifacts
+Technology_Artifact(ingestionZipFile, "Ingestion Zip File")
+
+' Realization Relations
 Rel_Realization_Up(dataManagement, rawDynamicDataProcessing)
 Rel_Realization_Up(importFunction, importService)
 Rel_Realization_Up(deleteFunction, deleteService)
 Rel_Realization_Up(fdmOutputFunction, exportForFdmIngestionService)
-Rel_Aggregation(dataManagement, import)
-Rel_Aggregation(dataManagement, export)
-Rel_Aggregation(dataManagement, remove)
+Rel_Realization_Up(ingestAfterUpload, datasetIndexIngestTriggering)
+Rel_Realization_Up(ingestFdmPending, datasetFileIngestTriggering)
+
+' Aggregation Relations
+Rel_Aggregation_Up(datasetIndexIngestTriggering, fdmAzureIngestionService)
+Rel_Aggregation_Up(datasetFileIngestTriggering, fdmAzureIngestionService)
+
+' Serving Relations
 Rel_Serving_Up(importService, import)
 Rel_Serving_Up(deleteService, remove)
 Rel_Serving_Up(uploadToAzureService, export)
 Rel_Serving_Up(fdmAzureIngestionService, export)
 Rel_Serving_Up(exportForFdmIngestionService, export)
 Rel_Serving_Up(dataMovementService, uploadToAzureService)
+
+' Composition Relations
 Rel_Composition_Up(dynamicsTlsImporter, importFunction)
 Rel_Composition_Up(dynamicsFdmExporter, fdmOutputFunction)
 Rel_Composition_Up(dynamicsDelete, deleteFunction)
+Rel_Composition_Up(postUrlIngest, ingestAfterUpload)
+Rel_Composition_Up(fdmIngestPending, ingestFdmPending)
 
+' Triggering Relations
+
+Rel_Triggering(receive, importService)
+Rel_Triggering_Right(import, export)
+Rel_Triggering_Right(export, remove)
+
+' Assignment Relations
+Rel_Assignment_Down(receive, internalBulkDataStorage)
 
 @enduml
