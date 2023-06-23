@@ -1,0 +1,27 @@
+@startuml lifecycle managment capabilities
+!include <archimate/Archimate>
+title Lifecycle Managment Capabilities
+skinparam rectangle<<behavior>> {
+    roundCorner 25
+}
+
+' PLAN Capabilities
+rectangle "Portfolio Lifecycle Management" <<$archimate/strategy-capability>><<behavior>> as lifecycleManagement #STRATEGY {
+
+    Strategy_Capability(productOrServiceLifecycleManagment, "Product/Service\nLifecycle Management")
+    
+    rectangle "IT Infrastructure Lifecycle Management" <<$archimate/strategy-capability>><<behavior>> as itPortfolioLifecycleManagment #STRATEGY {
+
+        rectangle "Network Lifecycle Management" <<$archimate/strategy-capability>><<behavior>> as networksLifecycleManagment #STRATEGY {
+            Strategy_Capability(switchLifecycleManagment, "Switch")
+            Strategy_Capability(firewallLifecycleManagement, "Firewall")
+            Strategy_Capability(interconnectLifecycleManagment, "Interconnect")
+            Strategy_Capability(timeSourceLifecycleManagment, "Time Source")
+        }
+
+        Strategy_Capability(computeLifecycleManagement, "Compute")
+        Strategy_Capability(storageLifecycleManagment, "Storage") 
+    }
+}
+
+@enduml
