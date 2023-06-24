@@ -1,0 +1,59 @@
+@startuml it infrastructure managment
+!include <archimate/Archimate>
+title IT Infrastructure Management
+skinparam rectangle<<behavior>> {
+    roundCorner 25
+}
+
+' Goal
+"Decrease delays"
+"Decrease data loss"
+
+
+' Outcome
+"Deceased delays"
+"Deceased data loss"
+
+' Course of Action
+"Complete routine maintenances"
+"Automatic Monitoring\nand Reporting of system"
+
+' Cabability
+Strategy_Capability(dataStorageManagment, "Data Storage Management")
+Strategy_Capability(networkManagement, "Network Management")
+Strategy_Capability(backupRecoveryManagement, "Backup and Recovery Management")
+Strategy_Capability(incidentManagement, "Incident Managment")
+Strategy_Capability(cyberSecurityManagment, "Cybersecurity Management")
+Strategy_Capability(virtualInfrastructureManagement, "Virtual Infrastructure Management")
+Strategy_Capability(changeManagment, "Change Management")
+
+Strategy_Capability(dataCentreManagement, "Data Centre Management")
+
+' Resource
+Strategy_Resource(dcimApp, "OpenDCIM")
+
+' Object
+Business_Object(dataRetentionPolicy, "<<policy>>\nData Retention\nPolicy")
+Business_Object(backupPolicy, "<<policy>>\nBackup Policy")
+Business_Object(cyberSecurityPolicy, "<<policy>>\nCyber Security Policy")
+
+' Role
+Business_Role(backupAdministrator, "Backup Administrator")
+Business_Role(storageAdministrator, "Storage Administrator")
+Business_Role(networkAdmistrator, "Network Administrator")
+Business_Role(virtualInfrastructureAdministrator, "Virtual Infrastructure Administrator")
+Business_Role(dataCentreAdministrator, "Data Centre Administrator")
+
+Rel_Assignment_Up(backupAdministrator, backupRecoveryManagement)
+Rel_Assignment_Up(storageAdministrator, dataStorageManagment)
+Rel_Assignment_Up(networkAdmistrator, networkManagement)
+Rel_Assignment_Up(virtualInfrastructureAdministrator, virtualInfrastructureManagement)
+Rel_Assignment_Up(dcimApp, dataCentreManagement)
+Rel_Assignment_Up(dataCentreAdministrator, dataCentreManagement)
+
+' Rel_Serving_Up(itPortfolioLifecycleManagment, lifecycleManagement)
+' Rel_Serving_Up(productOrServiceLifecycleManagment, lifecycleManagement)
+' Rel_Serving_Up(networksLifecycleManagment, itPortfolioLifecycleManagment)
+
+Rel_Access_Left(dataCentreAdministrator, dcimApp)
+@enduml
