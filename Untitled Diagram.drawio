@@ -1,9 +1,53 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15" version="24.7.17">
   <diagram name="Page-1" id="hFsnOIFah4pHpkkRDjsM">
-    <mxGraphModel>
+    <mxGraphModel dx="1200" dy="724" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="v-BuazjGcvu0v99NYhs_-1" value="" style="image;sketch=0;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/mscae/Azure_Pipelines.svg;" vertex="1" parent="1">
+          <mxGeometry x="390" y="80" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="v-BuazjGcvu0v99NYhs_-2" value="Plateau" style="html=1;outlineConnect=0;whiteSpace=wrap;fillColor=#FFE0E0;shape=mxgraph.archimate3.application;appType=plateau;" vertex="1" parent="1">
+          <mxGeometry x="60" y="210" width="150" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="v-BuazjGcvu0v99NYhs_-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="v-BuazjGcvu0v99NYhs_-3" target="v-BuazjGcvu0v99NYhs_-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v-BuazjGcvu0v99NYhs_-3" value="Plateau" style="html=1;outlineConnect=0;whiteSpace=wrap;fillColor=#FFE0E0;shape=mxgraph.archimate3.application;appType=plateau;" vertex="1" parent="1">
+          <mxGeometry x="290" y="210" width="150" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="v-BuazjGcvu0v99NYhs_-7" value="Plateau" style="html=1;outlineConnect=0;whiteSpace=wrap;fillColor=#FFE0E0;shape=mxgraph.archimate3.application;appType=plateau;" vertex="1" parent="1">
+          <mxGeometry x="520" y="210" width="150" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="v-BuazjGcvu0v99NYhs_-9" value="" style="html=1;outlineConnect=0;whiteSpace=wrap;fillColor=#CCCCFF;shape=mxgraph.archimate3.goal;" vertex="1" parent="1">
+          <mxGeometry x="345" y="350" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="v-BuazjGcvu0v99NYhs_-11" value="" style="edgeStyle=elbowEdgeStyle;html=1;endArrow=block;dashed=0;elbow=vertical;endFill=1;rounded=0;" edge="1" parent="1" source="v-BuazjGcvu0v99NYhs_-2" target="v-BuazjGcvu0v99NYhs_-3">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="170" y="300" as="sourcePoint" />
+            <mxPoint x="330" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="v-BuazjGcvu0v99NYhs_-12" value="" style="edgeStyle=elbowEdgeStyle;html=1;endArrow=none;elbow=vertical;rounded=0;" edge="1" parent="1" source="v-BuazjGcvu0v99NYhs_-9" target="v-BuazjGcvu0v99NYhs_-3">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="330" y="300" as="sourcePoint" />
+            <mxPoint x="490" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="v-BuazjGcvu0v99NYhs_-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.3;exitY=0.7;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="v-BuazjGcvu0v99NYhs_-13">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="50" y="620" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="v-BuazjGcvu0v99NYhs_-13" value="" style="html=1;outlineConnect=0;whiteSpace=wrap;fillColor=#CCCCFF;shape=mxgraph.archimate3.outcome;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="450" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="v-BuazjGcvu0v99NYhs_-14" value="" style="html=1;endArrow=block;elbow=vertical;endFill=0;dashed=1;rounded=0;strokeColor=default;" edge="1" parent="1" source="v-BuazjGcvu0v99NYhs_-13" target="v-BuazjGcvu0v99NYhs_-9">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="330" y="300" as="sourcePoint" />
+            <mxPoint x="490" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
